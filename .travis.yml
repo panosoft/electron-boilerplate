@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - node
+
+os:
+  - osx
+
+env:
+  global:
+    - secure: "AYatXwk3NN9CUng3wlfESC22F1JdgAmmwWSLn7i5ERyyUNT359RZ3Y54ZfkT3gInfEmOhoj2+5Xj0pUUk0PQZVuioHtZj3I4qBroXMQrs4YAjWb8LhaRysFxO2IRgmDcxo1zIJDNgmtWnBJwna8LvmKvsR2asQ0xOwihbvhMdm2736nc3TRO1EZe7Tjrwc5wlXOxOl3DDMkjQCLRLc29g8RZsGDsNrUaIAgVzRCO0WIlShH9rhwV6vshGvgB7gZvxjvV8/7VgNQihzu3xL0ZdU71XMpe7qiTtTulvFNzV87lOe1H6qJq3TJOel5aIq0eNIyNllY9NJglnC5+3LzaTLgdFxqV+g0G67pYFw47o+4PVG+0nre79HrVf2qB7qq1bZ3OcvnLXjOVygUvVcBoLE8cD/0OBebYirm0ZOPCZT1Z4FrLcXT8k/1V5s+hSiYSdd7CVbltneL567Lh6IugYnBeUumwAikaj7coP1SHHvsicJxkoLSJyHNMUCZNLithnw8Picch3199C30PmK2cEpnb5zor3Q2ilO82ZDhZkw119Gn7kqRJNNTxVbkgXFwKNR77T+SbZq6XA25FqvXbSH7Nf7URNZoCU6NSHKVcD873cwDcvH1GMvY/r/47M9IyUGqq2E0VnSRxjkHNsff2H5GeGGtsB7StPfN206IYwSk="
+
+cache:
+  directories:
+  - node_modules
+  - app/node_modules
+  - $HOME/.electron
+
+script:
+  - npm test
+  - npm run dist

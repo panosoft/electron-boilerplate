@@ -6,12 +6,13 @@
     "postinstall": "npm --prefix ./app install",
     "start": "electron ./app",
     "pack": "electron-packager ./app --all --out=dist --overwrite --app-version=$npm_package_version --prune --asar",
-    "dist": "build --dist --platform darwin --platform win32 --platform linux --arch all",
+    "dist": "build --dist --arch all",
     "test": "npm run test:main && npm run test:renderer",
     "test:main": "electron-mocha ./app/test/main",
     "test:renderer": "electron-mocha --renderer ./app/test/renderer"
   },
   "build": {
+    "publish": "onTag",
     "app-bundle-id": "your.id",
     "app-category-type": "your.app.category.type",
     "win": {
