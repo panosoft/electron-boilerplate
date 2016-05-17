@@ -1,0 +1,30 @@
+{
+  "name": "@panosoft/electron-boiler",
+  "version": "0.1.0",
+  "description": "",
+  "scripts": {
+    "postinstall": "npm --prefix ./app install",
+    "start": "electron ./app",
+    "pack": "electron-packager ./app --all --out=dist --overwrite --app-version=$npm_package_version --prune --asar",
+    "dist": "build --dist --platform darwin --platform win32 --platform linux --arch all",
+    "test": "npm run test:main && npm run test:renderer",
+    "test:main": "electron-mocha ./app/test/main",
+    "test:renderer": "electron-mocha --renderer ./app/test/renderer"
+  },
+  "build": {
+    "app-bundle-id": "your.id",
+    "app-category-type": "your.app.category.type",
+    "win": {
+      "iconUrl": "http://some.domain.com/icon.ico"
+    }
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "electron-builder": "^3.20.0",
+    "electron-mocha": "^2.0.0",
+    "electron-packager": "^7.0.1",
+    "electron-prebuilt": "^1.0.2"
+  }
+}

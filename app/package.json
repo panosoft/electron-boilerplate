@@ -1,0 +1,17 @@
+{
+  "name": "app-name",
+  "productName": "App Name",
+  "version": "0.1.0",
+  "description": "App description",
+  "homepage": "app.homepage.com",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Author",
+    "email": "author@domain.com"
+  },
+  "license": "ISC",
+  "dependencies": {}
+}
