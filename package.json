@@ -20,7 +20,7 @@
     "dmg": "appdmg .appdmg.json \"dist/$npm_package_productName-darwin-x64/$npm_package_productName-$npm_package_version.dmg\"",
     "zip": "cd \"dist/$npm_package_productName-darwin-x64\"; bestzip \"$npm_package_productName-$npm_package_version-mac.zip\" \"$npm_package_productName.app\"",
     "build": "npm run pack && npm run dmg && npm run zip",
-    "publish": "publish-release --token=$GITHUB_TOKEN --owner=panosoft --repo=electron-boiler --tag=$npm_package_version --draft --reuseRelease --reuseDraftOnly --assets \"dist/$npm_package_productName-darwin-x64/$npm_package_productName-$npm_package_version.dmg\", \"dist/$npm_package_productName-darwin-x64/$npm_package_productName-$npm_package_version-mac.zip\"",
+    "publish": "publish-release --token=$GITHUB_TOKEN --owner=panosoft --repo=electron-boiler --tag=$npm_package_version --name=$npm_package_version --notes='' --draft --reuseRelease --reuseDraftOnly --assets \"dist/$npm_package_productName-darwin-x64/$npm_package_productName-$npm_package_version.dmg\", \"dist/$npm_package_productName-darwin-x64/$npm_package_productName-$npm_package_version-mac.zip\"",
     "release:patch": "npm run test && npm run build && npm version patch && git push && npm run publish"
   },
   "devDependencies": {
