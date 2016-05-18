@@ -1,0 +1,9 @@
+{
+  "title": "Install",
+  "icon": "resources/icon.icns",
+  "icon-size": 80,
+  "contents": [
+		{ "x": 192, "y": 344, "type": "file", "path": "dist/App Name-darwin-x64/App Name.app" },
+    { "x": 448, "y": 344, "type": "link", "path": "/Applications" }
+  ]
+}

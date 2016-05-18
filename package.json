@@ -9,19 +9,27 @@
     "email": ""
   },
   "license": "ISC",
-  "repository": "user/repository",
+  "repository": "panosoft/electron-boiler",
   "main": "src/index.js",
   "scripts": {
     "start": "electron ./app",
     "test": "npm run test:main && npm run test:renderer",
     "test:main": "electron-mocha test/main",
     "test:renderer": "electron-mocha --renderer test/renderer",
-    "pack": "electron-packager ./app --all --out=dist --overwrite --app-version=$npm_package_version --prune --asar"
+    "pack": "electron-packager . --platform=darwin --arch=all --out=dist --overwrite --prune --app-version=$npm_package_version  --asar --osx-sign.identity='Alexandre Gigliotti'",
+    "dmg": "appdmg .appdmg.json \"dist/$npm_package_productName-darwin-x64/$npm_package_productName-$npm_package_version.dmg\"",
+    "zip": "cd \"dist/$npm_package_productName-darwin-x64\"; bestzip \"$npm_package_productName-$npm_package_version-mac.zip\" \"$npm_package_productName.app\"",
+    "build": "npm run pack && npm run dmg && npm run zip",
+    "publish": "publish-release --token=$GITHUB_TOKEN --draft --reuseRelease --reuseDraftOnly --assets \"dist/$npm_package_productName-darwin-x64/$npm_package_productName-$npm_package_version.dmg\", \"dist/$npm_package_productName-darwin-x64/$npm_package_productName-$npm_package_version-mac.zip\"",
+    "release:patch": "npm run test && npm run build && npm version patch && git push && npm run publish"
   },
   "devDependencies": {
+    "appdmg": "^0.4.3",
+    "bestzip": "^1.1.3",
     "chai": "^3.5.0",
     "electron-mocha": "^2.0.0",
     "electron-packager": "^7.0.1",
-    "electron-prebuilt": "^1.0.2"
+    "electron-prebuilt": "^1.0.2",
+    "publish-release": "^1.3.0"
   }
 }
