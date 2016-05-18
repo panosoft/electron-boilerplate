@@ -9,7 +9,8 @@
     "dist": "build --dist --arch all",
     "test": "npm run test:main && npm run test:renderer",
     "test:main": "electron-mocha ./app/test/main",
-    "test:renderer": "electron-mocha --renderer ./app/test/renderer"
+    "test:renderer": "electron-mocha --renderer ./app/test/renderer",
+    "patch": "npm --prefix ./app version patch && npm version patch"
   },
   "build": {
     "publish": "onTag",
