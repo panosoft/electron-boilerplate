@@ -18,7 +18,7 @@
     "test:renderer": "electron-mocha --renderer test/renderer",
     "pack": "electron-packager . --platform=darwin --arch=all --out=dist --overwrite --prune --app-version=$npm_package_version  --asar --osx-sign.identity='Alexandre Gigliotti'",
     "dmg": "appdmg .appdmg.json \"dist/$npm_package_productName-darwin-x64/$npm_package_productName-$npm_package_version.dmg\"",
-    "zip": "cd \"dist/$npm_package_productName-darwin-x64\"; bestzip \"$npm_package_productName-$npm_package_version-mac.zip\" \"$npm_package_productName.app\"",
+    "zip": "cd \"dist/$npm_package_productName-darwin-x64\"; zip -r \"$npm_package_productName-$npm_package_version-mac.zip\" \"$npm_package_productName.app\"",
     "build": "npm run pack && npm run dmg && npm run zip",
     "publish": "publish-release --token=$GITHUB_TOKEN --owner=panosoft --repo=electron-boilerplate --tag=$npm_package_version --name=$npm_package_version --notes=$npm_package_version --reuseRelease --reuseDraftOnly --assets \"dist/$npm_package_productName-darwin-x64/$npm_package_productName-$npm_package_version.dmg,dist/$npm_package_productName-darwin-x64/$npm_package_productName-$npm_package_version-mac.zip\"",
     "release:patch": "npm run test && npm version patch && git push && npm run build && npm run publish"

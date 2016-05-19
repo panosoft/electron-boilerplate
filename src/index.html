@@ -23,8 +23,6 @@
         // auto update logic
         const os = require('os');
         const autoUpdater = remote.autoUpdater;
-
-        const platform = `${os.platform()}_${os.arch()}`;
         const version = app.getVersion();
         const url = `http://panosoft-nuts.herokuapp.com/update/osx/${version}`;
         autoUpdater.setFeedURL(url);
