@@ -12,7 +12,7 @@
   "repository": "panosoft/electron-boilerplate",
   "main": "src/index.js",
   "scripts": {
-    "start": "electron ./app",
+    "start": "electron .",
     "test": "npm run test:main && npm run test:renderer",
     "test:main": "electron-mocha test/main",
     "test:renderer": "electron-mocha --renderer test/renderer",

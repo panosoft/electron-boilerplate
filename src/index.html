@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
+    <script>
+
+    </script>
   </head>
   <body>
     <h1>Hello World!</h1>
@@ -13,8 +16,24 @@
     </p>
     <p>
       <script>
-        const app = require('electron').remote.app;
+        const remote = require('electron').remote;
+        const app = remote.app;
         document.write(`App Name: ${app.getVersion()}`);
+
+        // auto update logic
+        const os = require('os');
+        const autoUpdater = remote.autoUpdater;
+
+        const platform = `${os.platform()}_${os.arch()}`;
+        const version = app.getVersion();
+        const url = `http://panosoft-nuts.herokuapp.com/update/osx/${version}`;
+        autoUpdater.setFeedURL(url);
+        autoUpdater.on('error', e => console.dir(e));
+        autoUpdater.on('checking-for-update', () => console.log('checking-for-update:', url));
+        autoUpdater.on('update-available', () => console.log('update-available'));
+        autoUpdater.on('update-not-available', () => console.log('update-not-available'));
+        autoUpdater.on('update-downloaded', (e) => console.log('update-downloaded:', e));
+        autoUpdater.checkForUpdates();
       </script>
     </p>
   </body>
