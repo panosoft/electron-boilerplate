@@ -2,12 +2,12 @@ const {createWindowsInstaller} = require('electron-winstaller');
 const pkg = require('../package');
 
 const productName = pkg.productName;
-const directory = `dist/${productName}-win32-x64`;
+const version = pkg.version;
 createWindowsInstaller({
-	appDirectory: directory,
-	outputDirectory: directory,
+	appDirectory: `app/${productName}-win32-x64`,
+	outputDirectory: `dist`,
 	exe: `${productName}.exe`,
-	setupExe: `${productName}-setup.exe`
+	setupExe: `${productName} Setup ${version}.exe`
 }).then(
 	() => console.log('Installer created'),
 	e => console.error('Error:', e)
