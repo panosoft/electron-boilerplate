@@ -29,7 +29,9 @@
     "publish": "publish-release --token=$GITHUB_TOKEN --owner=panosoft --repo=electron-boilerplate --tag=$npm_package_version --name=$npm_package_version --notes=$npm_package_version --reuseRelease --assets \"dist/$npm_package_productName-$npm_package_version.dmg,dist/$npm_package_productName-$npm_package_version-mac.zip,dist/$npm_package_productName Setup $npm_package_version.exe,dist/$npm_package_name-$npm_package_version-full.nupkg,dist/RELEASES\"",
     "release:patch": "npm run test && npm version patch && git push --follow-tags && npm run clean && npm run build && npm run pack && npm run publish"
   },
-  "dependencies": {},
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  },
   "devDependencies": {
     "appdmg": "^0.4.3",
     "bestzip": "^1.1.3",
