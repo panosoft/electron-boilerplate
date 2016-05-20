@@ -13,11 +13,11 @@
   "main": "src/index.js",
   "scripts": {
     "start": "electron .",
-    "test": "npm run test:main && npm run test:renderer",
     "test:main": "electron-mocha test/main",
     "test:renderer": "electron-mocha --renderer test/renderer",
     "test:integration": "mocha test/integration",
-    "clean": "rm -rf app/ dist/",
+    "test": "npm run test:main && npm run test:renderer && npm run test:integration",
+    "clean": "rm -rf app/* dist/*",
     "build:mac": "electron-packager . --platform=darwin --arch=all --out=app --overwrite --prune --app-version=$npm_package_version  --asar --osx-sign.identity='Alexandre Gigliotti'",
     "build:win": "electron-packager . --platform=win32 --arch=all --out=app --overwrite --prune --app-version=$npm_package_version  --asar",
     "build": "npm run build:mac && npm run build:win",
