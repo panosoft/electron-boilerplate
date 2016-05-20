@@ -18,6 +18,8 @@
     "test:renderer": "electron-mocha --renderer test/renderer",
     "test:integration": "mocha test/integration",
 
+    "clean": "rm -rf app/ dist/",
+
     "build:mac": "electron-packager . --platform=darwin --arch=all --out=app --overwrite --prune --app-version=$npm_package_version  --asar --osx-sign.identity='Alexandre Gigliotti'",
     "build:win": "electron-packager . --platform=win32 --arch=all --out=app --overwrite --prune --app-version=$npm_package_version  --asar",
     "build": "npm run build:mac && npm run build:win",
@@ -30,7 +32,7 @@
 
     "publish": "publish-release --token=$GITHUB_TOKEN --owner=panosoft --repo=electron-boilerplate --tag=$npm_package_version --name=$npm_package_version --notes=$npm_package_version --reuseRelease --assets \"dist/$npm_package_productName-$npm_package_version.dmg, dist/$npm_package_productName-$npm_package_version-mac.zip, dist/$npm_package_productName Setup $npm_package_version-mac.exe, dist/$npm_package_name-$npm_package_version-full.nupkg, dist/RELEASES\"",
 
-    "release:patch": "npm run test && npm version patch && git push && npm run build && npm run pack && npm run publish"
+    "release:patch": "npm run test && npm version patch && git push && npm run clean && npm run build && npm run pack && npm run publish"
   },
   "dependencies": {},
   "devDependencies": {
