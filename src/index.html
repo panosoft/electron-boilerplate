@@ -21,7 +21,6 @@
         document.write(`App Name: ${app.getVersion()}`);
 
         // auto update logic
-        const os = require('os');
         const autoUpdater = remote.autoUpdater;
         const version = app.getVersion();
         const url = `http://panosoft-nuts.herokuapp.com/update/osx/${version}`;
