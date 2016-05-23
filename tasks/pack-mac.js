@@ -1,0 +1,3 @@
+// dmg (.appdmg.json)
+
+// zip

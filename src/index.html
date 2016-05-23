@@ -20,22 +20,16 @@
         const app = remote.app;
         document.write(`App Name: ${app.getVersion()}`);
 
+        // inter-process communication
+        const ipc = require('electron').ipcRenderer;
+        ipc.on('message', (event, message) => console.log(message));
         // auto update logic
-        const autoUpdater = remote.autoUpdater;
-        const version = app.getVersion();
-        const os = require('os');
-        const platform = os.platform() === 'darwin' ? 'osx' : os.platform();
-        const url = `http://panosoft-nuts.herokuapp.com/update/${platform}/${version}`;
-        autoUpdater.setFeedURL(url);
-        autoUpdater.on('error', e => console.dir(e));
-        autoUpdater.on('checking-for-update', () => console.log('checking-for-update:', url));
-        autoUpdater.on('update-available', () => console.log('update-available'));
-        autoUpdater.on('update-not-available', () => console.log('update-not-available'));
-        autoUpdater.on('update-downloaded', (e) => {
-          console.log('update-downloaded:', e);
-          if (confirm('Quit and Install?')) autoUpdater.quitAndInstall();
+        ipc.on('autoUpdater:error', (event, error) => console.error(error));
+        ipc.on('autoUpdater:update-downloaded', (...args) => {
+          console.log('update-downloaded:', args);
+          if (confirm('Quit and Install?')) ipc.send('quit-and-install');
         });
-        autoUpdater.checkForUpdates();
+
       </script>
     </p>
   </body>
