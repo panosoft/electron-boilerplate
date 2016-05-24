@@ -18,7 +18,7 @@
     "test:integration": "mocha test/integration",
     "test": "npm run test:main && npm run test:renderer && npm run test:integration",
     "clean": "rm -rf dist/applications/* dist/packages/*",
-    "build": "electron-packager . --platform=darwin --arch=all --out=dist/applications --overwrite --prune --app-version=$npm_package_version  --asar --osx-sign.identity='Alexandre Gigliotti'",
+    "build": "electron-packager . --platform=darwin,win32 --arch=all --out=dist/applications --overwrite --prune --app-version=$npm_package_version  --asar --osx-sign.identity='Alexandre Gigliotti'",
     "dmg": "FILE=\"dist/packages/$npm_package_name-$npm_package_version.dmg\"; rm \"$FILE\"; appdmg .appdmg.json \"$FILE\"",
     "zip": "cd \"dist/applications/$npm_package_productName-darwin-x64\"; FILE=\"../../packages/$npm_package_name-$npm_package_version-mac.zip\"; rm \"$FILE\"; zip --recurse-paths --quiet \"$FILE\" \"$npm_package_productName.app\"",
     "pack:mac": "npm run dmg && npm run zip",

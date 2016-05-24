@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Hello World!</title>
     <script>
+      const remote = require('electron').remote;
+      const app = remote.app;
 
       // auto update logic
       const ipc = require('electron').ipcRenderer;
@@ -32,11 +34,8 @@
       and Electron <script>document.write(process.versions.electron)</script>.
     </p>
     <p>
-      <script>
-        const remote = require('electron').remote;
-        const app = remote.app;
-        document.write(`App Name: ${app.getVersion()}`);
-      </script>
+      App Name: <script>document.write(app.getVersion())</script>
     </p>
+    <button onclick="ipc.send('autoUpdater:check-for-update')">Check for Update</button>
   </body>
 </html>
