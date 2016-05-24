@@ -5,6 +5,23 @@
     <title>Hello World!</title>
     <script>
 
+      // auto update logic
+      const ipc = require('electron').ipcRenderer;
+      ipc.on('autoUpdater:error', (event, error) => console.error(error));
+      ipc.on('autoUpdater:checking-for-update:', (...args) =>
+        console.log('autoUpdater:checking-for-update:', args)
+      );
+      ipc.on('autoUpdater:update-not-available', (...args) =>
+        console.log('autoUpdater:update-not-available', args)
+      );
+      ipc.on('autoUpdater:update-available', (...args) =>
+        console.log('autoUpdater:update-available', args)
+      );
+      ipc.on('autoUpdater:update-downloaded', (...args) => {
+        console.log('update-downloaded:', args);
+        if (confirm('Quit and Install?')) ipc.send('autoUpdater:quit-and-install');
+      });
+
     </script>
   </head>
   <body>
@@ -19,17 +36,6 @@
         const remote = require('electron').remote;
         const app = remote.app;
         document.write(`App Name: ${app.getVersion()}`);
-
-        // inter-process communication
-        const ipc = require('electron').ipcRenderer;
-        ipc.on('message', (event, message) => console.log(message));
-        // auto update logic
-        ipc.on('autoUpdater:error', (event, error) => console.error(error));
-        ipc.on('autoUpdater:update-downloaded', (...args) => {
-          console.log('update-downloaded:', args);
-          if (confirm('Quit and Install?')) ipc.send('quit-and-install');
-        });
-
       </script>
     </p>
   </body>

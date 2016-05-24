@@ -1,6 +1,6 @@
-const electron = require('electron');
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
+const {app, BrowserWindow} = require('electron');
+const isDev = require('electron-is-dev');
+const updater = require('./updater');
 
 let mainWindow;
 const createWindow = () => {
@@ -13,31 +13,7 @@ const createWindow = () => {
 const main = () => {
 	app.on('ready', () => {
 		createWindow();
-
-		// TODO handle auto update logic in here
-		const send = mainWindow.webContents.send.bind(mainWindow.webContents);
-		const autoUpdater = electron.autoUpdater;
-    const ipc = require('ipcMain');
-		const version = app.getVersion();
-		const os = require('os');
-		const platform = os.platform() === 'darwin' ? 'osx' : os.platform();
-		const url = `http://panosoft-nuts.herokuapp.com/update/${platform}/${version}`;
-		autoUpdater.on('error', (event, error) => send('autoUpdater:error', error));
-		autoUpdater.on('checking-for-update', () => send('autoUpdater:checking-for-update:', url));
-		autoUpdater.on('update-not-available', () => send('autoUpdater:update-not-available'));
-    autoUpdater.on('update-available', () => send('autoUpdater:update-available'));
-    autoUpdater.on('update-downloaded', (...args) => send('autoUpdater:update-downloaded', ...args));
-		ipc.on('quit-and-install', (event) => {
-			console.log('quit-and-install', event);
-			autoUpdater.quitAndInstall();
-		});
-		mainWindow.webContents.on('did-finish-load', () => {
-			autoUpdater.setFeedURL(url);
-			send('message', 'checking for updates');
-			console.log('check-for-update');
-			autoUpdater.checkForUpdates();
-		});
-
+    if (!isDev) updater.initialize(mainWindow);
 	});
 	app.on('window-all-closed', () => {
 	  if (process.platform !== 'darwin') app.quit();
