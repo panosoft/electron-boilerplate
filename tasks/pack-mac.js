@@ -4,7 +4,7 @@ const rm = require('rimraf');
 
 const dmg = () => {
   const basepath = '.';
-  const target = `dist/packages/${pkg.name}-${pkg.version}.dmg`;
+  const output = `dist/packages/${pkg.name}-${pkg.version}.dmg`;
   const specification = {
     title: 'Install',
     icon: 'resources/icon.icns',
@@ -14,10 +14,10 @@ const dmg = () => {
       { x: 450, y: 300, type: 'link', path: '/Applications' }
     ]
   };
-  rm.sync(target);
-  const dmg = appDmg({target, basepath, specification});
+  rm.sync(output);
+  const dmg = appDmg({output, basepath, specification});
   dmg.on('error', error => console.error(error));
-  dmg.on('finish', () => console.log(`dmg created: ${target}`));
+  dmg.on('finish', () => console.log(`dmg created: ${output}`));
 };
 dmg();
 

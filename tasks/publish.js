@@ -13,7 +13,7 @@ const options = {
   prerelease: false,
   reuseRelease: true,
   reuseDraftOnly: false,
-  assets: glob.sync('../dist/packages/*')
+  assets: glob.sync('dist/packages/*')
 };
 const publisher = publishRelease(options, (error, release) => {
   if (error) console.error(error);

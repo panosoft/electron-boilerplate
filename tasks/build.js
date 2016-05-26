@@ -1,5 +1,5 @@
 const minimatch = require('minimatch');
-const pack = require('electron-packager');
+const build = require('electron-packager');
 const pkg = require('../package');
 const R = require('ramda');
 
@@ -17,7 +17,7 @@ const options = {
 	arch: 'all',
 	out: 'dist/applications',
 	app_version: pkg.version,
-	asar: false,
+	asar: true,
 	overwrite: true,
 	prune: true,
 	ignore: match([
@@ -32,7 +32,7 @@ const options = {
 	]),
 	'osx-sign': {identity: 'Alexandre Gigliotti'}
 };
-pack(options, (error, paths) => {
+build(options, (error, paths) => {
 	if (error) console.error(error);
 	else console.log(paths);
 });
