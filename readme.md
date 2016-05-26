@@ -14,25 +14,10 @@ Get started on your Electron app by doing the following:
 
 The app configuration can be found in the following files:
 
-`package.json`
-	name (can't be scoped)
-	productName
-	description (required)
-	author (required)
-	repository
-	license
-`license`
-	copyright (current year, your name)
-`tasks/build.js`
-	platform
-	osx-sign
-`tasks/pack-mac.js`
-	specification
-`tasks/publish.js`
-	token
-	owner
-	repo
+- `package.json`: name (can't be scoped), productName, description (required), author (required), repository, license
+- `license`: copyright (current year, your name)
+- `tasks/build.js`: platform, osx-sign
+- `tasks/pack-mac.js`: specification
+- `tasks/publish.js`: token, owner, repo
 
 This boilerplate also presumes the use of the [Nuts](https://github.com/GitbookIO/nuts) release version server.
-
-## License
