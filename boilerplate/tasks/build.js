@@ -30,7 +30,7 @@ const options = {
 		'tasks',
 		'test'
 	]),
-	'osx-sign': {identity: 'Alexandre Gigliotti'}
+	'osx-sign': ''
 };
 build(options, (error, paths) => {
 	if (error) console.error(error);

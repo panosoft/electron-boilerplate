@@ -4,8 +4,8 @@ const publishRelease = require('publish-release')
 
 const options = {
   token: process.env.GITHUB_TOKEN,
-  owner: 'panosoft',
-  repo: 'electron-boilerplate',
+  owner: 'user',
+  repo: 'repo',
   tag: `v${pkg.version}`,
   name: `v${pkg.version}`,
   notes: '',
